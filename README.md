@@ -1,1 +1,1 @@
-# Alogritmes-generals
+Algorithms

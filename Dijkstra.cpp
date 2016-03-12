@@ -1,8 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <set>
 #include <queue>
-#include <algorithm>
 
 using namespace std;
 
@@ -16,9 +14,9 @@ int main () {
     vector < vector < pair < int, int > > > v(n);
     for (int i = 0; i < m; i++) {
         cin >> c >> t >> k;
-        v[c].push_back({k ,t});
+        v[c].push_back(make_pair(k ,t));
     }
-    cua.push({0,0});
+    cua.push(make_pair(0,0));
     while (not cua.empty()) {
         t = cua.top().first;
         k = cua.top().second;
@@ -26,7 +24,7 @@ int main () {
         if (visited[k] == -1) {
             visited[k] = -t;
             for (int i = 0; i < v[k].size(); i++) {
-                if (visited[v[k][i].second] == -1) cua.push({t - v[k][i].first, v[k][i].second});
+                if (visited[v[k][i].second] == -1) cua.push(make_pair(t - v[k][i].first, v[k][i].second));
             }
         }
     }

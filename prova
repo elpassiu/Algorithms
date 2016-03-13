@@ -1,2 +1,0 @@
-Implementation of Dijkstra's algorithm to find the shortest path from vertex 0 to all the other vertices in a weighted directed graph (without negative weights). It outputs "not connected" if there is no path between vertex 0 and the actual vertex. 
-Note that I'm changing the weights' sign when storing values in the priority queue so that it orders them non-decreasingly in absolute value.

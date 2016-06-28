@@ -21,7 +21,7 @@ int main () {
         v[c].push_back(make_pair(t ,k));
     }
     vector < int > visited (n, -1); // vector where the weight of the path is stored. It stores -1 if it hasn't been visited yet
-    priority_queue <PII> cua;       //priority queue for Dijsktra's implementation. In this pair: "first" = vertex number; "second" = weight
+    priority_queue <PII> cua;       //priority queue for Dijsktra's implementation. In this pair: "second" = vertex number; "first" = weight
     cua.push(make_pair(0,0));       //inicialization of the priority queue with vertex 0 and weight 0
     while (not cua.empty()) {
         t = cua.top().first;

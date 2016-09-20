@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector <int> pare;
+vector <int> algo;
+vector < vector < int > > adj;
+vector < pair < int , int > > res;
+vector < int > bomb;
+vector < int > lamp;
+int n,e,c,i;
+
+void dfs (int x){
+    int cont = 0;
+    int cont2 = 0;
+    for (int i = 0; i < adj[x].size(); i++) {
+        if (adj[x][i] != pare[x]) {
+            pare[adj[x][i]] = x;
+            dfs (adj[x][i]);
+            if (algo[adj[x][i]] == 1) algo[x] = 1;
+            cont+=res[adj[x][i]].first;
+            if (res[adj[x][i]].second > 0) {
+                cont2 += res[adj[x][i]].second;
+                cont = cont + (c+e)*res[adj[x][i]].second;
+            }
+            else if (res[adj[x][i]].second < 0){
+                cont2 = cont2 + res[adj[x][i]].second;
+                cont = cont + (c+e)*(-res[adj[x][i]].second);
+            }
+            else if (algo [adj[x][i]] == 1) {
+                cont = cont + 2*e;
+            }
+
+        }
+    }
+    if (bomb [x] != 0 or lamp[x] != 0) algo[x] = 1;
+    cont = cont + i*(lamp[x]);
+    cont2 = cont2 + -lamp[x] + bomb[x];
+    res[x].first = cont;
+    res[x].second = cont2;
+    
+    
+    
+}
+
+int main () {
+    while (cin >> n >> e >> c >> i) {
+        algo = vector < int > (n, 0);
+        pare = vector < int > (n,-1);
+        adj = vector < vector < int > > (n, vector < int > ());
+        res = vector < pair < int, int > > (n);
+        bomb = vector < int > (n);
+        lamp = vector < int > (n);
+        int a,b;
+        for (int i = 0; i < n-1; i++) {
+            cin >> a >> b;
+            adj[a].push_back(b);
+            adj[b].push_back(a);
+        }
+        for (int i = 0; i < n; i++) cin >> lamp[i] >> bomb[i];
+        dfs (0);
+        cout << res[0].first << endl;
+        /*for (int i = 0; i < n; i++) cout << res [i].second << " ";
+        cout << endl;
+        for (int i = 0; i < n; i++) cout << pare[i] << " ";
+        cout << endl;
+        for (int i = 0; i < n; i++) cout << res [i].first << " ";*/
+    }
+}

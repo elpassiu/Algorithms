@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
 
 typedef vector<int> VI;
